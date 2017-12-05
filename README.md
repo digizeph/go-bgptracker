@@ -1,4 +1,4 @@
-# go-bgptracker
+# go-bgptracker [![Build Status](https://travis-ci.org/digizeph/go-bgptracker.svg?branch=master)](https://travis-ci.org/digizeph/go-bgptracker)
 
 A simple web application that shows the oldest and most recent BGP dump files from all the collectors in RIPE RRC and RouteViews.
 
