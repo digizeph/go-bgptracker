@@ -20,7 +20,7 @@ func main() {
 	var collectorsMap = make(map[string]trackers.CollectorInfo)
 
 	// start the web service at the beginning, run as a go routine
-	go web.StartServer(collectorsMap, &lastCrawlTime, ":9999")
+	go startServer(collectorsMap, &lastCrawlTime, ":9999")
 
 	// start crawling before the ticker begins
 	crawl(collectorsMap)
@@ -29,7 +29,7 @@ func main() {
 	ticker := time.NewTicker(time.Minute * 2)
 	for range ticker.C {
 		// when ticker triggers a timeout, crawl the collectors
-		crawl()
+		crawl(collectorsMap)
 	}
 }
 
@@ -60,7 +60,7 @@ func crawl(collectorsMap map[string]trackers.CollectorInfo) {
 }
 
 // start http server
-func StartServer(collectorsMap map[string]trackers.CollectorInfo, timePtr *time.Time, portStr string) {
+func startServer(collectorsMap map[string]trackers.CollectorInfo, timePtr *time.Time, portStr string) {
 
 	h := http.NewServeMux()
 
